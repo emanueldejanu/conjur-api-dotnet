@@ -8,6 +8,30 @@ public class ResourceTest : Base
     public ResourceTest()
     {
         Client.Authenticator = new MockAuthenticator();
+<<<<<<< HEAD
+=======
+    }
+
+    [Test]
+    public async Task TestCheck()
+    {
+        var resource = Client.Resource(Kind, Name);
+
+        Mocker.Mock(new Uri($"{BaseUri}resources/{TestAccount}/{Kind}/{Name}/?check=true&privilege=fry"), "");
+        Assert.IsTrue(resource.Check("fry"));
+        Assert.IsTrue(await resource.CheckAsync("fry"));
+
+        Mocker.Mock(new Uri($"{BaseUri}resources/{TestAccount}/{Kind}/{Name}/?check=true&privilege=fry"), "", HttpStatusCode.Forbidden);
+        Assert.IsFalse(resource.Check("fry"));
+        Assert.IsFalse(await resource.CheckAsync("fry"));
+    }
+
+    [Test]
+    public void TestNameToId()
+    {
+        var resource = Client.Resource(Kind, Name);
+        Assert.AreEqual($"{Client.AccountName}:{Kind}:{Name}", resource.Id);
+>>>>>>> 5850d34 (Cleanup and add async methods)
     }
 
     [Test]

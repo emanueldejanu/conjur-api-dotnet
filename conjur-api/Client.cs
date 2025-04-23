@@ -254,7 +254,7 @@ public partial class Client
     /// </summary>
     /// <returns>The normalized base URI.</returns>
     /// <param name="uri">Base appliance URI to normalize.</param>
-    internal static Uri NormalizeBaseUri(string uri)
+    private static Uri NormalizeBaseUri(string uri)
     {
         var uriBuilder = new UriBuilder(uri);
         // appliance's nginx doesn't like double slashes,
@@ -264,7 +264,7 @@ public partial class Client
         var normalizedPath = MultipleSlashesPattern().Replace(uriBuilder.Path, "/");
 
         // make sure there is a trailing slash
-        uriBuilder.Path = normalizedPath.EndsWith('/') ? normalizedPath : normalizedPath + "/";
+        uriBuilder.Path = normalizedPath.EndsWith('/') ? normalizedPath : normalizedPath + "/";;
 
         return uriBuilder.Uri;
     }

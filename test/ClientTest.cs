@@ -121,6 +121,7 @@ public class ClientTest : Base
             }
         }
     }
+<<<<<<< HEAD
 
     [TestCase("https://example.com//test/of/test", ExpectedResult = "https://example.com/test/of/test/")]
     [TestCase("https://example.com/test////of//test", ExpectedResult = "https://example.com/test/of/test/")]
@@ -130,4 +131,6 @@ public class ClientTest : Base
     [TestCase("https://example.com/test/of/test?q=p//s", ExpectedResult = "https://example.com/test/of/test/?q=p//s")]
     [TestCase("https://example.com/test/of/test?q=p%2F%2Fs", ExpectedResult = "https://example.com/test/of/test/?q=p%2F%2Fs")]
     public string TestNormalizeBaseUri(string uri) => Client.NormalizeBaseUri(uri).ToString();
+=======
+>>>>>>> 5850d34 (Cleanup and add async methods)
 }
