@@ -166,5 +166,5 @@ public class Resource
     /// <param name="id">Conjur Identifier.</param>
     /// <param name="account">Conjur Account.</param>
     /// <param name="kind">Conjur resource kind.</param>
-    protected static string IdToName(string id, string account, string kind) => id[(account.Length + kind.Length + 2)..];
+    protected internal static string IdToName(string id, string account, string kind) => id[(account.Length + kind.Length + 2)..];
 }

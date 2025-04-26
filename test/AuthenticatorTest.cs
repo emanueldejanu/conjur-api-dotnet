@@ -40,7 +40,6 @@ public class AuthenticatorTest : Base
     [Test]
     public void TestTokenThreadSafe()
     {
-<<<<<<< HEAD
         // This method is testing that calling ApiKeyAuthenticator.GetToken is thread safe, the token
         // is correctly cached until it expired.
         // First part is testing that we return the same token when called from two threads.
@@ -56,16 +55,6 @@ public class AuthenticatorTest : Base
         Assert.AreEqual(1, authenticationCount);
 
         // We create two threads that will run in parallel to call GetToken
-=======
-        var authenticationCount = 0;
-        var token = "token1";
-
-        MockToken(token).Verifier = Verifier;
-
-        Assert.AreEqual(token, Authenticator.GetToken());
-        Assert.AreEqual(1, authenticationCount);
-
->>>>>>> 5850d34 (Cleanup and add async methods)
         var t1 = new Thread(Checker);
         var t2 = new Thread(Checker);
 
@@ -74,16 +63,11 @@ public class AuthenticatorTest : Base
 
         Assert.AreEqual(1, authenticationCount);
 
-<<<<<<< HEAD
         // Set the cache token to expire.
         MockTokenExpiration();
 
         // Same as before but we test that the new token is fetched only once
         // after the old one expired.
-=======
-        MockTokenExpiration();
-
->>>>>>> 5850d34 (Cleanup and add async methods)
         token = "token2";
         MockToken(token).Verifier = Verifier;
 
@@ -111,7 +95,6 @@ public class AuthenticatorTest : Base
     [Test]
     public async Task TestTokenThreadSafeAsync()
     {
-<<<<<<< HEAD
         // This method is testing that calling ApiKeyAuthenticator.GetTokenAsync is thread safe, the token
         // is correctly cached until it expired.
         // First part is testing that we return the same token when called from different threads.
@@ -130,23 +113,10 @@ public class AuthenticatorTest : Base
         var tasks = CreateTasks(token);
 
         // We change the mock to return a different token to check that the cached token is returned
-=======
-        var authenticationCount = 0;
-        var token = "token1";
-
-        MockToken(token).VerifierAsync = VerifierAsync;
-
-        Assert.AreEqual(token, await Authenticator.GetTokenAsync());
-        Assert.AreEqual(1, authenticationCount);
-
-        var tasks = CreateTasks(token);
-
->>>>>>> 5850d34 (Cleanup and add async methods)
         MockToken("fake").VerifierAsync = VerifierAsync;
 
         await Task.WhenAll(tasks);
 
-<<<<<<< HEAD
         // Assert that the only one request was done to CyberArk Conjur
         Assert.AreEqual(1, authenticationCount);
 
@@ -155,12 +125,6 @@ public class AuthenticatorTest : Base
 
         // Same as before but we test that the new token is fetched only once
         // after the old one expired.
-=======
-        Assert.AreEqual(1, authenticationCount);
-
-        MockTokenExpiration();
-
->>>>>>> 5850d34 (Cleanup and add async methods)
         token = "token2";
         MockToken(token).VerifierAsync = VerifierAsync;
 
@@ -171,10 +135,7 @@ public class AuthenticatorTest : Base
 
         MockTokenExpiration();
 
-<<<<<<< HEAD
         // Same as previous, but with more tasks to increase the chance of collision.
-=======
->>>>>>> 5850d34 (Cleanup and add async methods)
         token = "token3";
         MockToken(token).VerifierAsync = VerifierAsync;
 
